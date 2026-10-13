@@ -1,0 +1,5 @@
+OS and version: Microsoft Windows NT 10.0.26300.0
+Python version: Python 3.11.4
+Date run: 2026-10-13
+Virtual environments: one .venv created inside each final solution folder
+API mode: Offline; tests and CLI examples used recorded/local fixtures. No live API run verified.

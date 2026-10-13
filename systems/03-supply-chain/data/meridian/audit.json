@@ -1,0 +1,28 @@
+{
+  "supplier": "Meridian Components",
+  "report_date": "2026-04-10",
+  "period": "Q1 2026",
+  "metrics": [
+    {
+      "metric_id": "on_time_delivery_rate",
+      "label": "On-time delivery",
+      "value": 95,
+      "unit": "percent",
+      "statement": "During Q1 2026, Meridian Components achieved an on-time delivery rate of 95% across all customer purchase orders, consistent with our internal service-level commitments."
+    },
+    {
+      "metric_id": "defect_rate_ppm",
+      "label": "Defect rate",
+      "value": 180,
+      "unit": "ppm",
+      "statement": "Our outgoing quality control recorded a defect rate of 180 parts per million for shipped components during the first quarter of 2026."
+    },
+    {
+      "metric_id": "average_lead_time_days",
+      "label": "Average lead time",
+      "value": 12,
+      "unit": "days",
+      "statement": "The average order-to-delivery lead time for Q1 2026 was 12 days, reflecting stable production scheduling and logistics throughput."
+    }
+  ]
+}

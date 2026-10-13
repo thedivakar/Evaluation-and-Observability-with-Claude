@@ -1,0 +1,12 @@
+[
+  {
+    "claim": "A 72-hour dockworker strike at the Port of Long Beach beginning March 16, 2026 stranded Meridian Components' inbound container shipments, delaying customer deliveries by an estimated five to nine days.",
+    "evidence": "'Meridian Components confirmed that several containers were stranded at anchor during the strike window, delaying deliveries to multiple customers by an estimated five to nine days.'",
+    "source": "industry_news",
+    "source_date": "2026-03-17",
+    "confidence": 0.85,
+    "metric_id": "port_disruption",
+    "needs_identifier": false,
+    "candidates": []
+  }
+]

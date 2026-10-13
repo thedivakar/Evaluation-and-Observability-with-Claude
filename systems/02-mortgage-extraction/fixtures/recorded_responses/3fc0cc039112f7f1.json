@@ -1,0 +1,330 @@
+{
+  "request": {
+    "max_tokens": 1500,
+    "messages": [
+      {
+        "content": "================================================================================\n            UNIFORM RESIDENTIAL APPRAISAL REPORT (FORM 1004)\n              Cascade Valuation Services - AMC Platform Print\n================================================================================\nReport ID:           CVS-2026-048217\nDate of Report:      May 14, 2026\nEffective Date:      May 12, 2026\nIntended Use:        Mortgage finance transaction\nIntended User:       Meridian Trust Bank, N.A.\nLender/Client:       Meridian Trust Bank, N.A. - Loan #MT-7740921\nBorrower:            Hartwell, J. and Hartwell, M.\n\n--------------------------------------------------------------------------------\nSUBJECT PROPERTY\n--------------------------------------------------------------------------------\nProperty Address:    4827 Brookhaven Court\nCity / State / Zip:  Fairhope, NC 28734\nCounty:              Macon\nLegal Description:   Lot 14, Block C, Brookhaven Estates Subdivision, Phase II\nAPN / Tax ID:        07-4421-014\nProperty Type:       Single Family\nOccupancy:           Owner-Occupied\nYear Built:          1998\nEffective Age:       18 years\nLot Size:            0.46 acres (approx. 20,037 sq ft)\nZoning:              R-1 Single Family Residential (legal conforming)\nSite Utilities:      Public water, public sewer, electric, natural gas\n\n--------------------------------------------------------------------------------\nIMPROVEMENTS\n--------------------------------------------------------------------------------\nDesign / Style:      Two-story Traditional\nFoundation:          Poured concrete, full basement (partially finished)\nExterior Walls:      Brick veneer / fiber-cement siding (avg condition)\nRoof:                Architectural asphalt shingle, ~6 yrs remaining life\nTotal Rooms:         8     Bedrooms: 4     Bathrooms: 2.5\nGross Living Area:   approximately 2,400 sq ft (above-grade finished)\nBasement:            ~900 sq ft total, ~400 sq ft finished rec room\nGarage:              2-car attached, 441 sq ft\nHeating / Cooling:   Forced air gas furnace / central electric AC\nOverall Condition:   C3 - Well maintained, no deferred maintenance noted\nQuality of Const.:   Q4 - Builder grade, average market appeal\n\n--------------------------------------------------------------------------------\nNEIGHBORHOOD\n--------------------------------------------------------------------------------\nLocation:            Suburban    Built-Up: Over 75%    Growth: Stable\nProperty Values:     Stable      Demand/Supply: In balance    Marketing: 3-6 mo\nPrice Range:         $295,000 to $475,000     Predominant: $385,000\nAge Range:           12 - 30 years            Predominant: 22 years\nThe subject is located in the Brookhaven Estates subdivision, a well-established\nresidential pocket on the north side of Fairhope. Schools are highly rated\n(Macon County USD). No adverse external influences observed. Comparable sales\nwere drawn from within 1.2 miles of the subject within the past 6 months.\n\n--------------------------------------------------------------------------------\nSALES COMPARISON APPROACH\n--------------------------------------------------------------------------------\n                       SUBJECT         COMP #1         COMP #2         COMP #3\nAddress           4827 Brookhaven  4811 Brookhaven  102 Pine Ridge  3340 Oakmoor\nProximity              ---           0.08 mi          0.71 mi         1.14 mi\nSale Price             ---          $412,500         $398,000        $425,000\nGLA (sq ft)          ~2,400          2,365            2,310           2,512\nSale Date              ---          03/2026          04/2026         02/2026\nAdj. Sale Price        ---          $410,200         $402,750        $415,800\nNet Adjustment %       ---           -0.6%           +1.2%            -2.2%\n\nReconciled value via Sales Comparison Approach: $410,000\n\n--------------------------------------------------------------------------------\nCOST APPROACH (Summary)\n--------------------------------------------------------------------------------\nSite Value Estimate:                                     $  72,000\nDwelling Replacement Cost New (2,400 sf @ $152/sf):      $ 364,800\nGarage / Basement Finish:                                $  38,500\nLess Depreciation (Physical, ~18 yrs):                  ($  71,300)\nIndicated Value by Cost Approach:                        $ 404,000\n\n--------------------------------------------------------------------------------\nINCOME APPROACH\n--------------------------------------------------------------------------------\nNot developed - not applicable for owner-occupied single family residence in\nthis market segment. Rental data insufficient to support a GRM analysis.\n\n--------------------------------------------------------------------------------\nRECONCILIATION & FINAL VALUE\n--------------------------------------------------------------------------------\nPrimary weight assigned to the Sales Comparison Approach given availability of\nstrong, recent, proximate comparables. Cost Approach used as supporting\nindicator. The three comparables bracket the subject in size, age, and quality.\n\nFINAL APPRAISED VALUE (As-Is, Market Value):    $ 410,000\n                                                =========\n\n--------------------------------------------------------------------------------\nAPPRAISER CERTIFICATION\n--------------------------------------------------------------------------------\nAppraiser:           Daniel R. Coachman, SRA\nLicense Type:        Certified Residential Real Property Appraiser\nLicense Number:      NC-A-6628194\nLicense State:       North Carolina\nLicense Expires:     06/30/2027\nSignature Date:      May 14, 2026\nFirm:                Cascade Valuation Services, LLC\n                     1820 Sycamore Blvd, Suite 210, Asheville, NC 28801\n\nThis appraisal was prepared in conformity with USPAP 2024-2025 and the\napplicable Fannie Mae Selling Guide requirements for Form 1004.\n================================================================================\n                              END OF REPORT\n================================================================================\n",
+        "role": "user"
+      }
+    ],
+    "model": "claude-haiku-4-5",
+    "system": "You are an extraction agent for a mortgage lender. The document is a appraisal document. Call `extract_appraisal` exactly once with the structured data the document contains, or `flag_for_review` if the document is unreadable or off-topic.\n\nNormalization rules \u2014 apply BEFORE writing values into structured fields:\n1. Square footage: emit an INTEGER (e.g., \"about 2,400 sq ft\" \u2192 2400; \"~3,100 SF\" \u2192 3100).\n2. Currency amounts: strip \"$\" and commas; emit a NUMBER (e.g., \"$485,000\" \u2192 485000.0; \"$1,234.56\" \u2192 1234.56).\n3. Percentage fields (interest rates, ratios): emit a DECIMAL (e.g., \"6.5%\" \u2192 0.065; \"6.875%\" \u2192 0.06875).\n\n<example name=\"clean\">\n<input>\nPAYSTUB. Employee: Jane Park. Pay frequency: monthly. Period 11/01-11/30/2024.\nBase monthly pay: $4,800.00. Monthly bonus: $400.00. Commission this month: $0.00.\nOther earnings: none. Stated monthly total: $5,200.00.\n</input>\n<reasoning>\nAll four income components are explicitly stated. Commission is explicitly\n$0.00 in the document, so we report 0.0 \u2014 not null \u2014 because the document\n*stated* it as zero. The stated_monthly_total of $5,200 equals the sum\n($4,800 + $400 + $0 + $0), so the validator will mark this consistent; we\nstill emit both fields verbatim so the validator can confirm.\n</reasoning>\n<output>\n{\"income\": {\"base_monthly\": 4800.00, \"bonus_monthly\": 400.00, \"commission_monthly\": 0.00, \"other_monthly\": null, \"stated_monthly_total\": 5200.00}}\n</output>\n</example>\n\n<example name=\"missing-bonus-returns-null\">\n<input>\nPAYSTUB. Employee: Carlos Mendez. Pay frequency: monthly. Period 03/01-03/31/2025.\nBase monthly pay: $3,500.00. The document does not mention bonus, commission, or overtime anywhere.\n</input>\n<reasoning>\nThe document does not mention bonus, commission, or overtime. Rule #1 says\nto return null when the document does not state a value \u2014 fabricating zero\nwould imply the employee earned zero bonus, not that the document is silent\nabout bonus. These are different facts. The downstream consumer treats null\nas \"we don't know\" and zero as \"we know it's zero\"; conflating them hides\nthe underlying uncertainty.\n</reasoning>\n<output>\n{\"income\": {\"base_monthly\": 3500.00, \"bonus_monthly\": null, \"commission_monthly\": null, \"overtime_monthly\": null, \"other_monthly\": null, \"stated_monthly_total\": null}}\n</output>\n</example>\n\n<example name=\"informal-measurement-normalized\">\n<input>\nAPPRAISAL. Subject property at 123 Oak Lane, Portland, OR 97214.\nGross living area: about 2,400 sq ft (above-grade finished).\nProperty type: single family. Occupancy: primary residence.\n</input>\n<reasoning>\n\"about 2,400 sq ft\" is an informal expression of a numeric measurement.\nNormalization rule #1 (square footage as integer) requires emitting the\ninteger 2400, not the source phrase and not a rounded variant. The hedge\nword \"about\" does not change the recorded value; if the appraiser were\nconfident in a different value they would have stated it. The schema enum\nincludes \"single_family\" exactly, so property_type uses the enum value and\nproperty_type_detail is null.\n</reasoning>\n<output>\n{\"property\": {\"gross_living_area_sqft\": 2400, \"property_type\": \"single_family\", \"property_type_detail\": null, \"occupancy_type\": \"primary_residence\"}}\n</output>\n</example>\n\n<example name=\"sum-mismatch-recorded-verbatim\">\n<input>\nPAYSTUB. Employee: Aiko Tanaka. Pay frequency: monthly.\nBase monthly pay: $4,000.00. Monthly bonus: $500.00. Commission this month: $0.00.\nOther earnings: $0.00. Stated monthly total: $5,000.00.\n</input>\n<reasoning>\nThe stated_monthly_total ($5,000.00) does not equal the sum of components\n($4,500.00). Do NOT silently correct the discrepancy \u2014 record both values\nverbatim. The mathematical-consistency validator downstream will flag this\nso a human can investigate the source document. Lying about either value\nwould hide the underlying error from the underwriting team. The \"right\"\nanswer here is to surface the conflict, not to resolve it.\n</reasoning>\n<output>\n{\"income\": {\"base_monthly\": 4000.00, \"bonus_monthly\": 500.00, \"commission_monthly\": 0.00, \"other_monthly\": 0.00, \"stated_monthly_total\": 5000.00}}\n</output>\n</example>\n",
+    "tool_choice": {
+      "type": "any"
+    },
+    "tools": [
+      {
+        "description": "Extract structured mortgage data from a appraisal document. Use null for any field not explicitly stated. When a categorical field's value is not in the listed enum, emit 'other' and write the actual value into the corresponding *_detail field.",
+        "input_schema": {
+          "properties": {
+            "borrower": {
+              "properties": {
+                "coborrower_name": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "date_of_birth": {
+                  "description": "ISO 8601 date (YYYY-MM-DD).",
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "email": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "full_name": {
+                  "type": "string"
+                },
+                "phone": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "ssn_last4": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "full_name"
+              ],
+              "type": "object"
+            },
+            "income": {
+              "properties": {
+                "base_monthly": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "bonus_monthly": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "bonus_ytd": {
+                  "description": "Year-to-date bonus. Tracked separately from `bonus_monthly` so the YTD column on a paystub can be captured even when the current period had no bonus.",
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "commission_monthly": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "other_monthly": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "overtime_monthly": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "stated_monthly_total": {
+                  "description": "Total monthly income as stated by the document, extracted verbatim. The validator cross-checks this against the sum of the per-component monthly fields above.",
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                }
+              },
+              "type": "object"
+            },
+            "loan": {
+              "properties": {
+                "amount": {
+                  "type": "number"
+                },
+                "interest_rate": {
+                  "description": "Decimal rate, e.g. 0.0625 for 6.25%.",
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "loan_program": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "loan_purpose": {
+                  "enum": [
+                    "purchase",
+                    "refinance_rate_term",
+                    "refinance_cash_out",
+                    "other",
+                    null
+                  ],
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "loan_purpose_detail": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "term_months": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "amount"
+              ],
+              "type": "object"
+            },
+            "property": {
+              "properties": {
+                "address": {
+                  "type": "string"
+                },
+                "appraised_value": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "gross_living_area_sqft": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                },
+                "hoa_dues_monthly": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "occupancy_type": {
+                  "enum": [
+                    "primary_residence",
+                    "second_home",
+                    "investment",
+                    "other",
+                    null
+                  ],
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "occupancy_type_detail": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "property_type": {
+                  "enum": [
+                    "single_family",
+                    "condo",
+                    "townhouse",
+                    "multi_family_2_4_unit",
+                    "manufactured",
+                    "planned_unit_development",
+                    "other"
+                  ],
+                  "type": "string"
+                },
+                "property_type_detail": {
+                  "description": "Free-text description when property_type is 'other'. Null when property_type is a known value.",
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "year_built": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "address",
+                "property_type"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "property"
+          ],
+          "type": "object"
+        },
+        "name": "extract_appraisal"
+      },
+      {
+        "description": "Call this when the document is too unclear, damaged, or off-topic to extract confidently. Provide a one-sentence reason.",
+        "input_schema": {
+          "properties": {
+            "reason": {
+              "description": "One sentence describing why extraction is not possible.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "reason"
+          ],
+          "type": "object"
+        },
+        "name": "flag_for_review"
+      }
+    ]
+  },
+  "response": {
+    "container": null,
+    "content": [
+      {
+        "caller": {
+          "type": "direct"
+        },
+        "id": "toolu_01U6X5WLxESHEo96nhabXiYd",
+        "input": {
+          "borrower": {
+            "coborrower_name": "Hartwell, M.",
+            "date_of_birth": null,
+            "email": null,
+            "full_name": "Hartwell, J. and Hartwell, M.",
+            "phone": null,
+            "ssn_last4": null
+          },
+          "income": {
+            "base_monthly": null,
+            "bonus_monthly": null,
+            "commission_monthly": null,
+            "other_monthly": null,
+            "overtime_monthly": null,
+            "stated_monthly_total": null
+          },
+          "loan": {
+            "amount": 410000.0,
+            "interest_rate": null,
+            "loan_program": null,
+            "loan_purpose": null,
+            "loan_purpose_detail": null,
+            "term_months": null
+          },
+          "property": {
+            "address": "4827 Brookhaven Court, Fairhope, NC 28734",
+            "appraised_value": 410000.0,
+            "gross_living_area_sqft": 2400,
+            "hoa_dues_monthly": null,
+            "occupancy_type": "primary_residence",
+            "occupancy_type_detail": null,
+            "property_type": "single_family",
+            "property_type_detail": null,
+            "year_built": 1998
+          }
+        },
+        "name": "extract_appraisal",
+        "type": "tool_use"
+      }
+    ],
+    "id": "msg_01WfeC6mgthHRGC56wh7iwnW",
+    "model": "claude-haiku-4-5-20251001",
+    "role": "assistant",
+    "stop_details": null,
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "not_available",
+      "input_tokens": 4123,
+      "output_tokens": 407,
+      "server_tool_use": null,
+      "service_tier": "standard"
+    }
+  }
+}

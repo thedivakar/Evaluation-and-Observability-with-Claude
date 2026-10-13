@@ -1,0 +1,82 @@
+{
+  "request": {
+    "max_tokens": 1500,
+    "messages": [
+      {
+        "content": "==============================================================\n   MERIDIAN LOGISTICS GROUP, INC.\n   1450 Harborview Parkway, Suite 300\n   Columbus, OH  43215\n   EIN: 47-XXXXXXX\n==============================================================\n   Payroll processed by ADP Workforce Now (R)\n   Earnings Statement\n--------------------------------------------------------------\n Employee:        Daniel R. Whitfield\n Employee ID:     MLG-008421\n Address:         2178 Brookline Ave, Apt 4B\n                  Columbus, OH 43202\n Department:      Operations - Distribution\n Job Title:       Senior Logistics Analyst\n Pay Rate:        $5,673.08 / bi-weekly  (Salary, Exempt)\n Annual Salary:   $147,500.00\n Filing Status:   Single   Allowances: 1\n--------------------------------------------------------------\n Pay Period:      04/27/2026  -  05/10/2026\n Pay Date:        05/15/2026\n Check No.:       0049217\n Deposit:         Direct Deposit (xxxx-4188)\n==============================================================\n\n EARNINGS              RATE      HOURS    CURRENT       YTD\n --------------------------------------------------------------\n Regular Salary       Salary       80.00  5,673.08   51,057.72\n Holiday Pay          Salary        0.00      0.00    2,269.23\n PTO - Vacation       Salary        0.00      0.00    1,418.27\n --------------------------------------------------------------\n GROSS PAY                              5,673.08   54,745.22\n\n TAXES & WITHHOLDINGS                   CURRENT       YTD\n --------------------------------------------------------------\n Federal Income Tax                       854.41    8,244.36\n Social Security (OASDI)                  351.73    3,394.20\n Medicare                                  82.26      793.81\n OH State Income Tax                      183.65    1,772.18\n Columbus City Tax (2.5%)                 141.83    1,368.63\n --------------------------------------------------------------\n TOTAL TAXES                            1,613.88   15,573.18\n\n PRE-TAX DEDUCTIONS                     CURRENT       YTD\n --------------------------------------------------------------\n 401(k) Contribution (6%)                 340.38    3,284.71\n Medical - Anthem PPO                     142.50    1,567.50\n Dental - Delta Dental                     18.40      202.40\n --------------------------------------------------------------\n TOTAL DEDUCTIONS                         501.28    5,054.61\n\n==============================================================\n NET PAY (this period):                            $3,557.92\n YTD NET PAY:                                     $34,117.43\n==============================================================\n\n Notes:\n   - Next scheduled pay date: 05/29/2026\n   - Questions? Contact Payroll at payroll@meridianlogistics.example\n   - Retain this statement for your records.\n\n *** End of Earnings Statement ***\n",
+        "role": "user"
+      }
+    ],
+    "model": "claude-haiku-4-5",
+    "system": "You are a document classifier for a mortgage lender. You will receive the text of a single mortgage-related document and must call the `classify_document` tool exactly once with the document's type and a one-sentence reason describing the textual cues that drove the classification. Use `other` if the document is not one of the listed types or is too damaged to classify confidently.",
+    "tool_choice": {
+      "name": "classify_document",
+      "type": "tool"
+    },
+    "tools": [
+      {
+        "description": "Classify a mortgage document into one of the supported document types, or 'other' if none apply. Always provide a one-sentence reason describing the textual cues that drove the classification.",
+        "input_schema": {
+          "properties": {
+            "document_type": {
+              "enum": [
+                "loan_application",
+                "appraisal",
+                "income_verification",
+                "other"
+              ],
+              "type": "string"
+            },
+            "reason": {
+              "description": "One sentence describing the textual cues that drove the classification.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "document_type",
+            "reason"
+          ],
+          "type": "object"
+        },
+        "name": "classify_document"
+      }
+    ]
+  },
+  "response": {
+    "container": null,
+    "content": [
+      {
+        "caller": {
+          "type": "direct"
+        },
+        "id": "toolu_013FtwzYK2wvrBeXn6dcbqiv",
+        "input": {
+          "document_type": "income_verification",
+          "reason": "The document is an earnings statement from an employer's payroll system showing detailed salary, deductions, and year-to-date income for a specific employee, which is a standard form of income verification used for mortgage applications."
+        },
+        "name": "classify_document",
+        "type": "tool_use"
+      }
+    ],
+    "id": "msg_016yomZi6XQJRB9rTxNf6uky",
+    "model": "claude-haiku-4-5-20251001",
+    "role": "assistant",
+    "stop_details": null,
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "not_available",
+      "input_tokens": 1536,
+      "output_tokens": 97,
+      "server_tool_use": null,
+      "service_tier": "standard"
+    }
+  }
+}

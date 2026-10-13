@@ -1,0 +1,40 @@
+ANYWHERE INSURANCE CO.
+   Personal Auto Policy - RENEWAL DECLARATIONS
+   ----------------------------------------------------------
+
+Policy Number:     POL-2025-001
+Named Insured:     John R. Smith
+Mailing Address:   428 Magnolia Lane, Ashford, OH 44102
+
+Policy Type:       Personal Automobile
+Policy Period:     03/15/2025  12:01 A.M. to  03/15/2026  12:01 A.M.
+
+VEHICLE COVERED
+   2019 Honda Accord LX     VIN: 1HGCV1F36KA0 23 871
+
+PREMIUM SUMMARY
+   Total Policy Premium ........................  $ 1,847.62
+   Payment Plan: Semi-Annual
+
+COVERAGES AND LIMITS
+   Bodily Injury Liability ..............  $100,000 / $300,000
+   Property Damage Liability ............  $ 50,000 per occurrence
+   Personal Injury Protection (PIP) .....  $ 10,000
+   Uninsured Motorist BI ................  $100,000 / $300,000
+   Comprehensive ........................  ACV  - Deductible $500
+   Collision ............................  ACV  - Deductible $1,000
+
+DEDUCTIBLE (Primary):  $500
+
+ENDORSEMENTS
+   - Rental Reimbursement Endorsement (AU-21)  $40/day, 30 day max
+   - Roadside Assistance Coverage (AU-44)
+   - Additional Insured: Anywhere Auto Leasing LLC
+
+EXCLUSIONS
+   - Racing or speed contest activity
+   - Use of vehicle for ride-share / TNC purposes without endorsement
+   - Intentional acts by the insured
+
+Underwriting Office: Cleveland District 07
+Producer Code: 4421-A

@@ -1,0 +1,39 @@
+HEARTLAND RESIDENTIAL INSURANCE
+       Homeowners Policy - HO-3 Special Form
+       =================================================
+
+Policy #:            POL-2025-004
+Insured Name(s):     Gregory & Patricia Lindholm
+Dwelling Address:    77 Birchwood Court, Madison, WI 53711
+
+Effective:           07/01/2025
+Expiration:          07/01/2026
+Annual Premium:      $1,684.25
+
+------------------------------------------------------------
+COVERAGE  PART        LIMIT             DEDUCTIBLE
+------------------------------------------------------------
+A - Dwelling          $ 385,000         $ 1,500 AOP
+B - Other Structures  $  38,500         $ 1,500
+C - Personal Property $ 192,500         $ 1,500
+D - Loss of Use       $  77,000         -
+E - Personal Liab.    $ 300,000 per occ -
+F - Medical Payments  $   5,000         -
+Wind/Hail Ded.        2% of Cov A       (= $ 7,700)
+------------------------------------------------------------
+
+ENDORSEMENTS:
+   HO-04-90  Personal Property Replacement Cost
+   HO-04-65  Scheduled Personal Property - Jewelry $12,000
+   HO-23-70  Service Line Coverage  $10,000 limit
+
+EXCLUSIONS (named):
+   - Earth Movement / Earthquake
+   - Flood (see separate NFIP policy if required)
+   - Neglect / Intentional Loss
+   - Ordinance or Law (limited coverage applies)
+
+This declaration replaces all previous declarations for the
+policy period shown above. Form HO-3 (07-11 ed.) applies.
+
+Agent of Record: Pinewood Insurance Services, agcy 5512

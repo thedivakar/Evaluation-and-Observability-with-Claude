@@ -1,0 +1,57 @@
+﻿# Supply Chain Risk Briefing ΓÇö Meridian
+
+## Well-Established
+### average_lead_time_days  _[corroborated across 2 sources]_
+- Reported values by source:
+    - 12.0 days ΓÇö supplier_audit (as of 2026-04-10)
+    - 12.0 days ΓÇö logistics (as of 2026-04-05)
+
+| Metric | Value | As of | Source |
+| --- | --- | --- | --- |
+| average_lead_time_days | 12.0 days | 2026-04-05 | logistics |
+
+### defect_rate_ppm  _[corroborated across 2 sources]_
+- Reported values by source:
+    - 180.0 ppm ΓÇö supplier_audit (as of 2026-04-10)
+    - 190.0 ppm ΓÇö internal_quality (as of 2026-04-08)
+
+### field_quality_concern  _[single source only]_
+> Meridian Components issued a voluntary precautionary recall of a single capacitor-assembly lot in Q1 2026 over potential elevated leakage current under thermal stress. (industry_news, 2026-02-19)
+
+### field_return_rate  _[single source only]_
+- Reported values by source:
+    - 1.4 percent ΓÇö internal_quality (as of 2026-04-08)
+
+### late_shipment_count  _[single source only]_
+- Reported values by source:
+    - 11.0 shipments ΓÇö logistics (as of 2026-04-05)
+
+| Metric | Value | As of | Source |
+| --- | --- | --- | --- |
+| late_shipment_count | 11.0 shipments | 2026-04-05 | logistics |
+
+### port_disruption  _[single source only]_
+> A 72-hour dockworker strike at the Port of Long Beach beginning March 16, 2026 stranded Meridian Components' inbound container shipments, delaying customer deliveries by an estimated five to nine days. (industry_news, 2026-03-17)
+
+### supplier_financial_distress  _[single source only]_  ΓÜá∩╕Å ESCALATE
+- escalation: ambiguous supplier identity ΓÇö request an identifier
+> A company named 'Meridian' is facing supplier financial distress, having drawn down emergency credit, missed subcontractor payments, and retained restructuring advisers. (industry_news, 2026-03-09)
+
+
+## Contested
+### on_time_delivery_rate  _[2 sources, conflicting]_  ΓÜá∩╕Å ESCALATE
+- escalation: high-impact metric is contested across sources
+- Reported values by source:
+    - 95.0 percent ΓÇö supplier_audit (as of 2026-04-10)
+    - 78.0 percent ΓÇö logistics (as of 2026-04-05)
+
+| Metric | Value | As of | Source |
+| --- | --- | --- | --- |
+| on_time_delivery_rate | 78.0 percent | 2026-04-05 | logistics |
+
+
+## Incomplete
+### production_capacity_utilization  _[missing source: no source reported this metric]_  ΓÜá∩╕Å ESCALATE
+- escalation: high-impact metric has no usable source
+- missing source: no source reported this metric
+

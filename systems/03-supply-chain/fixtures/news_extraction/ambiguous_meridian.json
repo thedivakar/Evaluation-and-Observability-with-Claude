@@ -1,0 +1,15 @@
+[
+  {
+    "claim": "A company named 'Meridian' is facing supplier financial distress, having drawn down emergency credit, missed subcontractor payments, and retained restructuring advisers.",
+    "evidence": "'a company identified only as Meridian has drawn down emergency credit lines, missed payments to subcontractors, and retained restructuring advisers amid deteriorating cash flow.'",
+    "source": "industry_news",
+    "source_date": "2026-03-09",
+    "confidence": 0.4,
+    "metric_id": "supplier_financial_distress",
+    "needs_identifier": true,
+    "candidates": [
+      "Meridian Components",
+      "Meridian Logistics Group"
+    ]
+  }
+]

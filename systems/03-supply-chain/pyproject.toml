@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "supply-chain-risk-investigation"
+version = "0.2.0"
+description = "Multi-source synthesis system that investigates supply-chain disruptions, preserving provenance and annotating conflicting evidence"
+requires-python = ">=3.11"
+dependencies = [
+  "anthropic>=0.40",
+  "pydantic>=2.7",
+  "chromadb>=0.5",
+  "sentence-transformers>=3.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8",
+  "mypy>=1.10",
+  "ruff>=0.5",
+]
+
+[project.scripts]
+supply-chain-investigate = "supply_chain_risk.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["supply_chain_risk*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+  "live: integration tests requiring ANTHROPIC_API_KEY and network access",
+]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+disallow_untyped_defs = true
+
+[[tool.mypy.overrides]]
+module = ["chromadb.*", "sentence_transformers.*"]
+ignore_missing_imports = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "RUF"]

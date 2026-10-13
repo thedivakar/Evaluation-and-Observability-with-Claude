@@ -1,0 +1,341 @@
+[
+  {
+    "policy_id": "POL-2025-001",
+    "policy_type": "auto",
+    "shape": "clean",
+    "expected_extraction": {
+      "carrier": "Anywhere Insurance Co.",
+      "policyholder": "John R. Smith",
+      "policy_number": "POL-2025-001",
+      "policy_type": "auto",
+      "effective_date": "2025-03-15",
+      "expiration_date": "2026-03-15",
+      "premium_amount": 1847.62,
+      "deductible": 500,
+      "coverage_limits": {
+        "bodily_injury_per_person": 100000,
+        "bodily_injury_per_accident": 300000,
+        "property_damage": 50000,
+        "personal_injury_protection": 10000,
+        "uninsured_motorist_bi": "100000/300000",
+        "comprehensive_deductible": 500,
+        "collision_deductible": 1000
+      },
+      "endorsements": [
+        "Rental Reimbursement Endorsement (AU-21)",
+        "Roadside Assistance Coverage (AU-44)",
+        "Additional Insured: Anywhere Auto Leasing LLC"
+      ],
+      "exclusions": [
+        "Racing or speed contest activity",
+        "Use of vehicle for ride-share / TNC purposes without endorsement",
+        "Intentional acts by the insured"
+      ]
+    }
+  },
+  {
+    "policy_id": "POL-2025-002",
+    "policy_type": "auto",
+    "shape": "clean",
+    "expected_extraction": {
+      "carrier": "Pioneer Mutual Insurance",
+      "policyholder": "Maria Elena Vasquez",
+      "policy_number": "POL-2025-002",
+      "policy_type": "auto",
+      "effective_date": "2025-05-01",
+      "expiration_date": "2026-05-01",
+      "premium_amount": 2213.40,
+      "deductible": 750,
+      "coverage_limits": {
+        "bodily_injury_per_person": 250000,
+        "bodily_injury_per_accident": 500000,
+        "property_damage": 100000,
+        "medical_payments": 5000,
+        "comprehensive_deductible": 250,
+        "collision_deductible": 750,
+        "towing_and_labor": 75
+      },
+      "endorsements": [
+        "Accident Forgiveness (1st at-fault waiver)",
+        "New Car Replacement - Vehicle #1 only",
+        "Original Equipment Manufacturer Parts Endorsement"
+      ],
+      "exclusions": [
+        "Loss while vehicle is being used to carry persons or property for a fee",
+        "Wear and tear, freezing, mechanical breakdown",
+        "War, insurrection, nuclear hazard"
+      ]
+    }
+  },
+  {
+    "policy_id": "POL-2025-003",
+    "policy_type": "auto",
+    "shape": "clean",
+    "expected_extraction": {
+      "carrier": "Liberty Crossroads Insurance Group",
+      "policyholder": "Devon T. Achebe",
+      "policy_number": "POL-2025-003",
+      "policy_type": "auto",
+      "effective_date": "2025-09-22",
+      "expiration_date": "2026-09-22",
+      "premium_amount": 1398.07,
+      "deductible": 1000,
+      "coverage_limits": {
+        "bodily_injury": "50000/100000",
+        "property_damage": 50000,
+        "uninsured_motorist": "50000/100000",
+        "medical_payments": 2000,
+        "comprehensive_deductible": 1000,
+        "collision_deductible": 1000
+      },
+      "endorsements": [
+        "Loan/Lease Gap Coverage endorsement",
+        "Custom Equipment endorsement - limit $1,500"
+      ],
+      "exclusions": [
+        "Damage caused by intentional act of insured",
+        "Loss arising from use in any prearranged racing event",
+        "Liability for damage to property in care, custody or control of the insured"
+      ]
+    }
+  },
+  {
+    "policy_id": "POL-2025-004",
+    "policy_type": "home",
+    "shape": "clean",
+    "expected_extraction": {
+      "carrier": "Heartland Residential Insurance",
+      "policyholder": "Gregory & Patricia Lindholm",
+      "policy_number": "POL-2025-004",
+      "policy_type": "home",
+      "effective_date": "2025-07-01",
+      "expiration_date": "2026-07-01",
+      "premium_amount": 1684.25,
+      "deductible": 1500,
+      "coverage_limits": {
+        "dwelling_A": 385000,
+        "other_structures_B": 38500,
+        "personal_property_C": 192500,
+        "loss_of_use_D": 77000,
+        "personal_liability_E": 300000,
+        "medical_payments_F": 5000,
+        "wind_hail_deductible_pct": 2
+      },
+      "endorsements": [
+        "HO-04-90 Personal Property Replacement Cost",
+        "HO-04-65 Scheduled Personal Property - Jewelry $12,000",
+        "HO-23-70 Service Line Coverage $10,000 limit"
+      ],
+      "exclusions": [
+        "Earth Movement / Earthquake",
+        "Flood",
+        "Neglect / Intentional Loss",
+        "Ordinance or Law (limited coverage applies)"
+      ]
+    }
+  },
+  {
+    "policy_id": "POL-2025-005",
+    "policy_type": "home",
+    "shape": "clean",
+    "expected_extraction": {
+      "carrier": "Coastline Property & Casualty Insurance Company",
+      "policyholder": "Aaliyah Brennan-Cole",
+      "policy_number": "POL-2025-005",
+      "policy_type": "home",
+      "effective_date": "2025-11-14",
+      "expiration_date": "2026-11-14",
+      "premium_amount": 2847.91,
+      "deductible": 2500,
+      "coverage_limits": {
+        "dwelling_A": 612000,
+        "other_structures_B": 61200,
+        "personal_property_C": 459000,
+        "ale_D": 183600,
+        "liability_E": 500000,
+        "med_pay_F": 5000,
+        "named_storm_deductible_pct": 5
+      },
+      "endorsements": [
+        "Water Backup & Sump Overflow ($25,000 sublimit)",
+        "Identity Theft Restoration Services",
+        "Equipment Breakdown Coverage",
+        "Ordinance or Law - 25% of Cov A"
+      ],
+      "exclusions": [
+        "Flood damage from rising surface water",
+        "Mold, fungus, or wet rot beyond $10,000 sublimit",
+        "Damage from insects, rodents, vermin",
+        "Earth movement (sinkhole separately available)"
+      ]
+    }
+  },
+  {
+    "policy_id": "POL-2025-006",
+    "policy_type": "umbrella",
+    "shape": "clean",
+    "expected_extraction": {
+      "carrier": "Summit Excess & Umbrella Insurance Company",
+      "policyholder": "Hiroshi & Eleanor Tanaka-Park",
+      "policy_number": "POL-2025-006",
+      "policy_type": "umbrella",
+      "effective_date": "2025-04-10",
+      "expiration_date": "2026-04-10",
+      "premium_amount": 612.50,
+      "deductible": 250,
+      "coverage_limits": {
+        "each_occurrence": 2000000,
+        "aggregate_personal_injury": 2000000,
+        "self_insured_retention": 250
+      },
+      "endorsements": [
+        "UMB-12 Worldwide Personal Injury Extension",
+        "UMB-09 Uninsured / Underinsured Motorist Excess - $1M",
+        "UMB-31 Not-for-Profit Director & Officer Coverage"
+      ],
+      "exclusions": [
+        "Business pursuits and professional services",
+        "Liability arising from aircraft ownership or operation",
+        "Damage to property owned by or in care of the insured",
+        "Intentional or criminal acts"
+      ]
+    }
+  },
+  {
+    "policy_id": "POL-2025-007",
+    "policy_type": "umbrella",
+    "shape": "clean",
+    "expected_extraction": {
+      "carrier": "Northgate Specialty Lines / Umbrella Division",
+      "policyholder": "Rebecca Onyemaechi",
+      "policy_number": "POL-2025-007",
+      "policy_type": "umbrella",
+      "effective_date": "2025-08-03",
+      "expiration_date": "2026-08-03",
+      "premium_amount": 1094.00,
+      "deductible": 500,
+      "coverage_limits": {
+        "per_occurrence": 5000000,
+        "aggregate": 5000000,
+        "self_insured_retention": 500
+      },
+      "endorsements": [
+        "UM/UIM excess - $1,000,000",
+        "Defense outside the limits endorsement",
+        "Reputational Injury & Cyber-Bullying Liability sublimit $250,000"
+      ],
+      "exclusions": [
+        "Punitive damages where uninsurable by law",
+        "Liability arising out of any owned aircraft",
+        "Liability assumed under a contract other than an insured contract",
+        "Workers compensation obligations"
+      ]
+    }
+  },
+  {
+    "policy_id": "POL-2025-008",
+    "policy_type": "other",
+    "shape": "clean",
+    "expected_extraction": {
+      "carrier": "Clarion Fine Art & Collectibles Underwriters",
+      "policyholder": "The Whitfield-Marsh Family Trust",
+      "policy_number": "POL-2025-008",
+      "policy_type": "other",
+      "policy_subtype": "fine_art_floater",
+      "effective_date": "2025-06-01",
+      "expiration_date": "2026-06-01",
+      "premium_amount": 3275.18,
+      "deductible": 0,
+      "coverage_limits": {
+        "total_scheduled_value": 1427500,
+        "coverage_basis": "Agreed Value, All-Risk, Worldwide"
+      },
+      "endorsements": [
+        "Newly Acquired Property Coverage (25% / 90 days)",
+        "Pair & Set Clause",
+        "Breakage Coverage for Fragile Articles",
+        "Transit Coverage - common carrier & private conveyance"
+      ],
+      "exclusions": [
+        "Wear, tear, gradual deterioration, inherent vice",
+        "Damage from restoration, repair, or retouching",
+        "Insects, vermin, mold",
+        "War, nuclear hazard",
+        "Mysterious disappearance of unscheduled items"
+      ]
+    }
+  },
+  {
+    "policy_id": "POL-2025-009",
+    "policy_type": "auto",
+    "shape": "missing_endorsement_schedule",
+    "expected_extraction": {
+      "carrier": "Midwest Farmers & Drivers Mutual",
+      "policyholder": "Theodore \"Ted\" Kowalczyk",
+      "policy_number": "POL-2025-009",
+      "policy_type": "auto",
+      "effective_date": "2025-10-05",
+      "expiration_date": "2026-10-05",
+      "premium_amount": 1512.88,
+      "deductible": 500,
+      "coverage_limits": {
+        "bodily_injury": "100000/300000",
+        "property_damage": 50000,
+        "pip_no_fault": 20000,
+        "uninsured_motorist_bi": "100000/300000",
+        "comprehensive_deductible": 500,
+        "collision_deductible": 1000
+      },
+      "endorsements": null,
+      "endorsements_note": "Document references 'Schedule A' for endorsements but Schedule A is not attached. Endorsement list is unrecoverable from this document.",
+      "exclusions": [
+        "Use of any covered auto in a business of selling, servicing, repairing, parking, or storing autos",
+        "Loss due to nuclear reaction or radioactive contamination",
+        "Liability assumed under any contract or agreement other than an insured contract"
+      ]
+    }
+  },
+  {
+    "policy_id": "POL-2025-010",
+    "policy_type": "home",
+    "shape": "inconsistent_premium",
+    "expected_extraction": {
+      "carrier": "Evergreen Homeowners Insurance Company",
+      "policyholder": "Karina Delacroix",
+      "policy_number": "POL-2025-010",
+      "policy_type": "home",
+      "effective_date": "2025-02-18",
+      "expiration_date": "2026-02-18",
+      "stated_premium": 2400.00,
+      "component_sum": 2350.00,
+      "premium_components": {
+        "base_premium": 800.00,
+        "coverage_a_charge": 1100.00,
+        "coverage_b_charge": 350.00,
+        "endorsement_charges": 200.00,
+        "multi_policy_discount": -100.00
+      },
+      "premium_discrepancy": 50.00,
+      "deductible": 1000,
+      "coverage_limits": {
+        "dwelling_A": 348000,
+        "other_structures_B": 34800,
+        "personal_property_C": 174000,
+        "loss_of_use_D": 69600,
+        "personal_liability_E": 300000,
+        "medical_payments_F": 5000
+      },
+      "endorsements": [
+        "Water Backup of Sewers & Drains ($10,000)",
+        "Personal Property Replacement Cost",
+        "Identity Fraud Expense Coverage ($15,000)"
+      ],
+      "exclusions": [
+        "Flood and surface water",
+        "Earth movement, including earthquake",
+        "War and nuclear hazard",
+        "Power failure originating off-premises"
+      ]
+    }
+  }
+]

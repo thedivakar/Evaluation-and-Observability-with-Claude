@@ -1,0 +1,82 @@
+{
+  "request": {
+    "max_tokens": 1500,
+    "messages": [
+      {
+        "content": "================================================================================\n            UNIFORM RESIDENTIAL APPRAISAL REPORT (FORM 1004)\n              Cascade Valuation Services - AMC Platform Print\n================================================================================\nReport ID:           CVS-2026-048217\nDate of Report:      May 14, 2026\nEffective Date:      May 12, 2026\nIntended Use:        Mortgage finance transaction\nIntended User:       Meridian Trust Bank, N.A.\nLender/Client:       Meridian Trust Bank, N.A. - Loan #MT-7740921\nBorrower:            Hartwell, J. and Hartwell, M.\n\n--------------------------------------------------------------------------------\nSUBJECT PROPERTY\n--------------------------------------------------------------------------------\nProperty Address:    4827 Brookhaven Court\nCity / State / Zip:  Fairhope, NC 28734\nCounty:              Macon\nLegal Description:   Lot 14, Block C, Brookhaven Estates Subdivision, Phase II\nAPN / Tax ID:        07-4421-014\nProperty Type:       Single Family\nOccupancy:           Owner-Occupied\nYear Built:          1998\nEffective Age:       18 years\nLot Size:            0.46 acres (approx. 20,037 sq ft)\nZoning:              R-1 Single Family Residential (legal conforming)\nSite Utilities:      Public water, public sewer, electric, natural gas\n\n--------------------------------------------------------------------------------\nIMPROVEMENTS\n--------------------------------------------------------------------------------\nDesign / Style:      Two-story Traditional\nFoundation:          Poured concrete, full basement (partially finished)\nExterior Walls:      Brick veneer / fiber-cement siding (avg condition)\nRoof:                Architectural asphalt shingle, ~6 yrs remaining life\nTotal Rooms:         8     Bedrooms: 4     Bathrooms: 2.5\nGross Living Area:   approximately 2,400 sq ft (above-grade finished)\nBasement:            ~900 sq ft total, ~400 sq ft finished rec room\nGarage:              2-car attached, 441 sq ft\nHeating / Cooling:   Forced air gas furnace / central electric AC\nOverall Condition:   C3 - Well maintained, no deferred maintenance noted\nQuality of Const.:   Q4 - Builder grade, average market appeal\n\n--------------------------------------------------------------------------------\nNEIGHBORHOOD\n--------------------------------------------------------------------------------\nLocation:            Suburban    Built-Up: Over 75%    Growth: Stable\nProperty Values:     Stable      Demand/Supply: In balance    Marketing: 3-6 mo\nPrice Range:         $295,000 to $475,000     Predominant: $385,000\nAge Range:           12 - 30 years            Predominant: 22 years\nThe subject is located in the Brookhaven Estates subdivision, a well-established\nresidential pocket on the north side of Fairhope. Schools are highly rated\n(Macon County USD). No adverse external influences observed. Comparable sales\nwere drawn from within 1.2 miles of the subject within the past 6 months.\n\n--------------------------------------------------------------------------------\nSALES COMPARISON APPROACH\n--------------------------------------------------------------------------------\n                       SUBJECT         COMP #1         COMP #2         COMP #3\nAddress           4827 Brookhaven  4811 Brookhaven  102 Pine Ridge  3340 Oakmoor\nProximity              ---           0.08 mi          0.71 mi         1.14 mi\nSale Price             ---          $412,500         $398,000        $425,000\nGLA (sq ft)          ~2,400          2,365            2,310           2,512\nSale Date              ---          03/2026          04/2026         02/2026\nAdj. Sale Price        ---          $410,200         $402,750        $415,800\nNet Adjustment %       ---           -0.6%           +1.2%            -2.2%\n\nReconciled value via Sales Comparison Approach: $410,000\n\n--------------------------------------------------------------------------------\nCOST APPROACH (Summary)\n--------------------------------------------------------------------------------\nSite Value Estimate:                                     $  72,000\nDwelling Replacement Cost New (2,400 sf @ $152/sf):      $ 364,800\nGarage / Basement Finish:                                $  38,500\nLess Depreciation (Physical, ~18 yrs):                  ($  71,300)\nIndicated Value by Cost Approach:                        $ 404,000\n\n--------------------------------------------------------------------------------\nINCOME APPROACH\n--------------------------------------------------------------------------------\nNot developed - not applicable for owner-occupied single family residence in\nthis market segment. Rental data insufficient to support a GRM analysis.\n\n--------------------------------------------------------------------------------\nRECONCILIATION & FINAL VALUE\n--------------------------------------------------------------------------------\nPrimary weight assigned to the Sales Comparison Approach given availability of\nstrong, recent, proximate comparables. Cost Approach used as supporting\nindicator. The three comparables bracket the subject in size, age, and quality.\n\nFINAL APPRAISED VALUE (As-Is, Market Value):    $ 410,000\n                                                =========\n\n--------------------------------------------------------------------------------\nAPPRAISER CERTIFICATION\n--------------------------------------------------------------------------------\nAppraiser:           Daniel R. Coachman, SRA\nLicense Type:        Certified Residential Real Property Appraiser\nLicense Number:      NC-A-6628194\nLicense State:       North Carolina\nLicense Expires:     06/30/2027\nSignature Date:      May 14, 2026\nFirm:                Cascade Valuation Services, LLC\n                     1820 Sycamore Blvd, Suite 210, Asheville, NC 28801\n\nThis appraisal was prepared in conformity with USPAP 2024-2025 and the\napplicable Fannie Mae Selling Guide requirements for Form 1004.\n================================================================================\n                              END OF REPORT\n================================================================================\n",
+        "role": "user"
+      }
+    ],
+    "model": "claude-haiku-4-5",
+    "system": "You are a document classifier for a mortgage lender. You will receive the text of a single mortgage-related document and must call the `classify_document` tool exactly once with the document's type and a one-sentence reason describing the textual cues that drove the classification. Use `other` if the document is not one of the listed types or is too damaged to classify confidently.",
+    "tool_choice": {
+      "name": "classify_document",
+      "type": "tool"
+    },
+    "tools": [
+      {
+        "description": "Classify a mortgage document into one of the supported document types, or 'other' if none apply. Always provide a one-sentence reason describing the textual cues that drove the classification.",
+        "input_schema": {
+          "properties": {
+            "document_type": {
+              "enum": [
+                "loan_application",
+                "appraisal",
+                "income_verification",
+                "other"
+              ],
+              "type": "string"
+            },
+            "reason": {
+              "description": "One sentence describing the textual cues that drove the classification.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "document_type",
+            "reason"
+          ],
+          "type": "object"
+        },
+        "name": "classify_document"
+      }
+    ]
+  },
+  "response": {
+    "container": null,
+    "content": [
+      {
+        "caller": {
+          "type": "direct"
+        },
+        "id": "toolu_01QADxGcjq854tserFYLTnjL",
+        "input": {
+          "document_type": "appraisal",
+          "reason": "This is a Uniform Residential Appraisal Report (Form 1004) containing property valuation analysis through sales comparison and cost approaches, appraiser certification, and a final appraised market value of $410,000 for the subject property."
+        },
+        "name": "classify_document",
+        "type": "tool_use"
+      }
+    ],
+    "id": "msg_01YCad5TGCkbenT5LgheaWFt",
+    "model": "claude-haiku-4-5-20251001",
+    "role": "assistant",
+    "stop_details": null,
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "not_available",
+      "input_tokens": 2169,
+      "output_tokens": 108,
+      "server_tool_use": null,
+      "service_tier": "standard"
+    }
+  }
+}

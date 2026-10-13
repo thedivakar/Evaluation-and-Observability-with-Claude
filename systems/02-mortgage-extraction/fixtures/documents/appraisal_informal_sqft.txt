@@ -1,0 +1,111 @@
+================================================================================
+            UNIFORM RESIDENTIAL APPRAISAL REPORT (FORM 1004)
+              Cascade Valuation Services - AMC Platform Print
+================================================================================
+Report ID:           CVS-2026-048217
+Date of Report:      May 14, 2026
+Effective Date:      May 12, 2026
+Intended Use:        Mortgage finance transaction
+Intended User:       Meridian Trust Bank, N.A.
+Lender/Client:       Meridian Trust Bank, N.A. - Loan #MT-7740921
+Borrower:            Hartwell, J. and Hartwell, M.
+
+--------------------------------------------------------------------------------
+SUBJECT PROPERTY
+--------------------------------------------------------------------------------
+Property Address:    4827 Brookhaven Court
+City / State / Zip:  Fairhope, NC 28734
+County:              Macon
+Legal Description:   Lot 14, Block C, Brookhaven Estates Subdivision, Phase II
+APN / Tax ID:        07-4421-014
+Property Type:       Single Family
+Occupancy:           Owner-Occupied
+Year Built:          1998
+Effective Age:       18 years
+Lot Size:            0.46 acres (approx. 20,037 sq ft)
+Zoning:              R-1 Single Family Residential (legal conforming)
+Site Utilities:      Public water, public sewer, electric, natural gas
+
+--------------------------------------------------------------------------------
+IMPROVEMENTS
+--------------------------------------------------------------------------------
+Design / Style:      Two-story Traditional
+Foundation:          Poured concrete, full basement (partially finished)
+Exterior Walls:      Brick veneer / fiber-cement siding (avg condition)
+Roof:                Architectural asphalt shingle, ~6 yrs remaining life
+Total Rooms:         8     Bedrooms: 4     Bathrooms: 2.5
+Gross Living Area:   approximately 2,400 sq ft (above-grade finished)
+Basement:            ~900 sq ft total, ~400 sq ft finished rec room
+Garage:              2-car attached, 441 sq ft
+Heating / Cooling:   Forced air gas furnace / central electric AC
+Overall Condition:   C3 - Well maintained, no deferred maintenance noted
+Quality of Const.:   Q4 - Builder grade, average market appeal
+
+--------------------------------------------------------------------------------
+NEIGHBORHOOD
+--------------------------------------------------------------------------------
+Location:            Suburban    Built-Up: Over 75%    Growth: Stable
+Property Values:     Stable      Demand/Supply: In balance    Marketing: 3-6 mo
+Price Range:         $295,000 to $475,000     Predominant: $385,000
+Age Range:           12 - 30 years            Predominant: 22 years
+The subject is located in the Brookhaven Estates subdivision, a well-established
+residential pocket on the north side of Fairhope. Schools are highly rated
+(Macon County USD). No adverse external influences observed. Comparable sales
+were drawn from within 1.2 miles of the subject within the past 6 months.
+
+--------------------------------------------------------------------------------
+SALES COMPARISON APPROACH
+--------------------------------------------------------------------------------
+                       SUBJECT         COMP #1         COMP #2         COMP #3
+Address           4827 Brookhaven  4811 Brookhaven  102 Pine Ridge  3340 Oakmoor
+Proximity              ---           0.08 mi          0.71 mi         1.14 mi
+Sale Price             ---          $412,500         $398,000        $425,000
+GLA (sq ft)          ~2,400          2,365            2,310           2,512
+Sale Date              ---          03/2026          04/2026         02/2026
+Adj. Sale Price        ---          $410,200         $402,750        $415,800
+Net Adjustment %       ---           -0.6%           +1.2%            -2.2%
+
+Reconciled value via Sales Comparison Approach: $410,000
+
+--------------------------------------------------------------------------------
+COST APPROACH (Summary)
+--------------------------------------------------------------------------------
+Site Value Estimate:                                     $  72,000
+Dwelling Replacement Cost New (2,400 sf @ $152/sf):      $ 364,800
+Garage / Basement Finish:                                $  38,500
+Less Depreciation (Physical, ~18 yrs):                  ($  71,300)
+Indicated Value by Cost Approach:                        $ 404,000
+
+--------------------------------------------------------------------------------
+INCOME APPROACH
+--------------------------------------------------------------------------------
+Not developed - not applicable for owner-occupied single family residence in
+this market segment. Rental data insufficient to support a GRM analysis.
+
+--------------------------------------------------------------------------------
+RECONCILIATION & FINAL VALUE
+--------------------------------------------------------------------------------
+Primary weight assigned to the Sales Comparison Approach given availability of
+strong, recent, proximate comparables. Cost Approach used as supporting
+indicator. The three comparables bracket the subject in size, age, and quality.
+
+FINAL APPRAISED VALUE (As-Is, Market Value):    $ 410,000
+                                                =========
+
+--------------------------------------------------------------------------------
+APPRAISER CERTIFICATION
+--------------------------------------------------------------------------------
+Appraiser:           Daniel R. Coachman, SRA
+License Type:        Certified Residential Real Property Appraiser
+License Number:      NC-A-6628194
+License State:       North Carolina
+License Expires:     06/30/2027
+Signature Date:      May 14, 2026
+Firm:                Cascade Valuation Services, LLC
+                     1820 Sycamore Blvd, Suite 210, Asheville, NC 28801
+
+This appraisal was prepared in conformity with USPAP 2024-2025 and the
+applicable Fannie Mae Selling Guide requirements for Form 1004.
+================================================================================
+                              END OF REPORT
+================================================================================

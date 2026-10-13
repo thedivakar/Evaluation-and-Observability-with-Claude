@@ -1,0 +1,312 @@
+{
+  "request": {
+    "max_tokens": 1500,
+    "messages": [
+      {
+        "content": "================================================================\n                    ADP PAYROLL SERVICES\n                  Earnings Statement\n================================================================\n\nEmployer:     Brightwater Logistics Solutions, LLC\n              4720 Continental Freight Way, Suite 220\n              Charlotte, NC 28208\n              EIN: 47-3918264\n\nEmployee:     Marcus T. Hollingsworth\nAddress:      188 Cedar Ridge Lane, Apt 4B\n              Charlotte, NC 28269\nEmployee ID:  BWLS-04471\nDepartment:   Regional Sales - Mid-Atlantic\nPosition:     Senior Account Executive\nFiling Status: Married Filing Jointly\nExemptions:   2\n\n----------------------------------------------------------------\nPay Period:   04/01/2026 - 04/30/2026\nPay Date:     05/01/2026\nCheck No:     0098314\nPeriod:       Monthly\n----------------------------------------------------------------\n\nEARNINGS (CURRENT PERIOD - MONTHLY)\n================================================================\nDescription              Rate         Hours      Current      YTD\n----------------------------------------------------------------\nBase Salary              -            -        5,416.67   21,666.68\nCommission (Apr Q2)      -            -        2,140.00    7,820.00\nBonus - Performance      -            -        1,250.00    3,500.00\nOvertime Premium         -            -          385.50    1,142.75\nAuto Allowance (Other)   -            -          450.00    1,800.00\n----------------------------------------------------------------\nTOTAL MONTHLY EARNINGS                         10,892.17   35,929.43\n\n\nPRE-TAX DEDUCTIONS\n================================================================\nDescription                            Current        YTD\n----------------------------------------------------------------\n401(k) Traditional (6%)                  325.00     1,300.00\nMedical - BCBS PPO Family                412.18     1,648.72\nDental - Delta PPO                        38.44       153.76\nVision - VSP                              11.20        44.80\nHSA Contribution                         150.00       600.00\n----------------------------------------------------------------\nTotal Pre-Tax Deductions                 936.82     3,748.04\n\n\nTAXES WITHHELD\n================================================================\nDescription                            Current        YTD\n----------------------------------------------------------------\nFederal Income Tax                     1,184.27     4,041.55\nSocial Security (OASDI 6.2%)             596.42     2,019.83\nMedicare (1.45%)                         139.46       472.45\nNC State Income Tax                      438.91     1,488.21\n----------------------------------------------------------------\nTotal Taxes Withheld                   2,359.06     8,022.04\n\n\nPOST-TAX DEDUCTIONS\n================================================================\nDescription                            Current        YTD\n----------------------------------------------------------------\nGroup Term Life Insurance                 18.50        74.00\nVoluntary AD&D                            12.75        51.00\nUnited Way Charitable                     25.00       100.00\n----------------------------------------------------------------\nTotal Post-Tax Deductions                 56.25       225.00\n\n\nSUMMARY\n================================================================\nGross Earnings (Monthly)              10,892.17    35,929.43\nTotal Deductions                       3,352.13    11,995.08\n----------------------------------------------------------------\nNET PAY                                7,540.04    23,934.35\n\n\nDirect Deposit:  Wells Fargo Bank ****6219     7,540.04\n\n----------------------------------------------------------------\nADP Processing ID: 26-NC-04471-0501\nThis is a system-generated document. Retain for your records.\n================================================================\n",
+        "role": "user"
+      }
+    ],
+    "model": "claude-haiku-4-5",
+    "system": "You are an extraction agent for a mortgage lender. The document is an income-verification document (W-2, paystub, employer letter, etc.). Call `extract_income_verification` exactly once with the structured data the document contains, or `flag_for_review` if the document is unreadable.\n\nCategorical criteria:\n1. Return null for any field not explicitly stated in the document. Do not infer, default, or fabricate.\n2. Base income is regularly recurring wages paid for ordinary hours. Distinguish it from bonus (irregular, performance-tied), commission (tied to sales volume), and overtime (premium hours). When the document is ambiguous, place the value in the most specific matching field; only use `other_earnings` as a last resort.\n3. When a categorical field's value is not in the listed enum, emit \"other\" and write the actual value into the corresponding `*_detail` field. Do not pick the \"closest\" enum value.\n4. Numeric fields receive numbers (per the normalization rules above), not strings. If the document is ambiguous about a numeric value (e.g., a smudged digit), emit null and rely on the validator / human review path.\n\nNormalization rules \u2014 apply BEFORE writing values into structured fields:\n1. Square footage: emit an INTEGER (e.g., \"about 2,400 sq ft\" \u2192 2400; \"~3,100 SF\" \u2192 3100).\n2. Currency amounts: strip \"$\" and commas; emit a NUMBER (e.g., \"$485,000\" \u2192 485000.0; \"$1,234.56\" \u2192 1234.56).\n3. Percentage fields (interest rates, ratios): emit a DECIMAL (e.g., \"6.5%\" \u2192 0.065; \"6.875%\" \u2192 0.06875).\n\n<example name=\"clean\">\n<input>\nPAYSTUB. Employee: Jane Park. Pay frequency: monthly. Period 11/01-11/30/2024.\nBase monthly pay: $4,800.00. Monthly bonus: $400.00. Commission this month: $0.00.\nOther earnings: none. Stated monthly total: $5,200.00.\n</input>\n<reasoning>\nAll four income components are explicitly stated. Commission is explicitly\n$0.00 in the document, so we report 0.0 \u2014 not null \u2014 because the document\n*stated* it as zero. The stated_monthly_total of $5,200 equals the sum\n($4,800 + $400 + $0 + $0), so the validator will mark this consistent; we\nstill emit both fields verbatim so the validator can confirm.\n</reasoning>\n<output>\n{\"income\": {\"base_monthly\": 4800.00, \"bonus_monthly\": 400.00, \"commission_monthly\": 0.00, \"other_monthly\": null, \"stated_monthly_total\": 5200.00}}\n</output>\n</example>\n\n<example name=\"missing-bonus-returns-null\">\n<input>\nPAYSTUB. Employee: Carlos Mendez. Pay frequency: monthly. Period 03/01-03/31/2025.\nBase monthly pay: $3,500.00. The document does not mention bonus, commission, or overtime anywhere.\n</input>\n<reasoning>\nThe document does not mention bonus, commission, or overtime. Rule #1 says\nto return null when the document does not state a value \u2014 fabricating zero\nwould imply the employee earned zero bonus, not that the document is silent\nabout bonus. These are different facts. The downstream consumer treats null\nas \"we don't know\" and zero as \"we know it's zero\"; conflating them hides\nthe underlying uncertainty.\n</reasoning>\n<output>\n{\"income\": {\"base_monthly\": 3500.00, \"bonus_monthly\": null, \"commission_monthly\": null, \"overtime_monthly\": null, \"other_monthly\": null, \"stated_monthly_total\": null}}\n</output>\n</example>\n\n<example name=\"informal-measurement-normalized\">\n<input>\nAPPRAISAL. Subject property at 123 Oak Lane, Portland, OR 97214.\nGross living area: about 2,400 sq ft (above-grade finished).\nProperty type: single family. Occupancy: primary residence.\n</input>\n<reasoning>\n\"about 2,400 sq ft\" is an informal expression of a numeric measurement.\nNormalization rule #1 (square footage as integer) requires emitting the\ninteger 2400, not the source phrase and not a rounded variant. The hedge\nword \"about\" does not change the recorded value; if the appraiser were\nconfident in a different value they would have stated it. The schema enum\nincludes \"single_family\" exactly, so property_type uses the enum value and\nproperty_type_detail is null.\n</reasoning>\n<output>\n{\"property\": {\"gross_living_area_sqft\": 2400, \"property_type\": \"single_family\", \"property_type_detail\": null, \"occupancy_type\": \"primary_residence\"}}\n</output>\n</example>\n\n<example name=\"sum-mismatch-recorded-verbatim\">\n<input>\nPAYSTUB. Employee: Aiko Tanaka. Pay frequency: monthly.\nBase monthly pay: $4,000.00. Monthly bonus: $500.00. Commission this month: $0.00.\nOther earnings: $0.00. Stated monthly total: $5,000.00.\n</input>\n<reasoning>\nThe stated_monthly_total ($5,000.00) does not equal the sum of components\n($4,500.00). Do NOT silently correct the discrepancy \u2014 record both values\nverbatim. The mathematical-consistency validator downstream will flag this\nso a human can investigate the source document. Lying about either value\nwould hide the underlying error from the underwriting team. The \"right\"\nanswer here is to surface the conflict, not to resolve it.\n</reasoning>\n<output>\n{\"income\": {\"base_monthly\": 4000.00, \"bonus_monthly\": 500.00, \"commission_monthly\": 0.00, \"other_monthly\": 0.00, \"stated_monthly_total\": 5000.00}}\n</output>\n</example>\n",
+    "tool_choice": {
+      "type": "any"
+    },
+    "tools": [
+      {
+        "description": "Extract structured mortgage data from a income_verification document. Use null for any field not explicitly stated. When a categorical field's value is not in the listed enum, emit 'other' and write the actual value into the corresponding *_detail field.",
+        "input_schema": {
+          "properties": {
+            "borrower": {
+              "properties": {
+                "coborrower_name": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "date_of_birth": {
+                  "description": "ISO 8601 date (YYYY-MM-DD).",
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "email": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "full_name": {
+                  "type": "string"
+                },
+                "phone": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "ssn_last4": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "full_name"
+              ],
+              "type": "object"
+            },
+            "income": {
+              "properties": {
+                "base_monthly": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "bonus_monthly": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "bonus_ytd": {
+                  "description": "Year-to-date bonus. Tracked separately from `bonus_monthly` so the YTD column on a paystub can be captured even when the current period had no bonus.",
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "commission_monthly": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "other_monthly": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "overtime_monthly": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "stated_monthly_total": {
+                  "description": "Total monthly income as stated by the document, extracted verbatim. The validator cross-checks this against the sum of the per-component monthly fields above.",
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                }
+              },
+              "type": "object"
+            },
+            "loan": {
+              "properties": {
+                "amount": {
+                  "type": "number"
+                },
+                "interest_rate": {
+                  "description": "Decimal rate, e.g. 0.0625 for 6.25%.",
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "loan_program": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "loan_purpose": {
+                  "enum": [
+                    "purchase",
+                    "refinance_rate_term",
+                    "refinance_cash_out",
+                    "other",
+                    null
+                  ],
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "loan_purpose_detail": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "term_months": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "amount"
+              ],
+              "type": "object"
+            },
+            "property": {
+              "properties": {
+                "address": {
+                  "type": "string"
+                },
+                "appraised_value": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "gross_living_area_sqft": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                },
+                "hoa_dues_monthly": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "occupancy_type": {
+                  "enum": [
+                    "primary_residence",
+                    "second_home",
+                    "investment",
+                    "other",
+                    null
+                  ],
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "occupancy_type_detail": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "property_type": {
+                  "enum": [
+                    "single_family",
+                    "condo",
+                    "townhouse",
+                    "multi_family_2_4_unit",
+                    "manufactured",
+                    "planned_unit_development",
+                    "other"
+                  ],
+                  "type": "string"
+                },
+                "property_type_detail": {
+                  "description": "Free-text description when property_type is 'other'. Null when property_type is a known value.",
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "year_built": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "address",
+                "property_type"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "borrower",
+            "income"
+          ],
+          "type": "object"
+        },
+        "name": "extract_income_verification"
+      },
+      {
+        "description": "Call this when the document is too unclear, damaged, or off-topic to extract confidently. Provide a one-sentence reason.",
+        "input_schema": {
+          "properties": {
+            "reason": {
+              "description": "One sentence describing why extraction is not possible.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "reason"
+          ],
+          "type": "object"
+        },
+        "name": "flag_for_review"
+      }
+    ]
+  },
+  "response": {
+    "container": null,
+    "content": [
+      {
+        "caller": {
+          "type": "direct"
+        },
+        "id": "toolu_0113tjXTqWCMwkX9khGmAKCb",
+        "input": {
+          "borrower": {
+            "coborrower_name": null,
+            "date_of_birth": null,
+            "email": null,
+            "full_name": "Marcus T. Hollingsworth",
+            "phone": null,
+            "ssn_last4": null
+          },
+          "income": {
+            "base_monthly": 5416.67,
+            "bonus_monthly": 1250.0,
+            "commission_monthly": 2140.0,
+            "other_monthly": 450.0,
+            "overtime_monthly": 385.5,
+            "stated_monthly_total": 10892.17
+          }
+        },
+        "name": "extract_income_verification",
+        "type": "tool_use"
+      }
+    ],
+    "id": "msg_01Gn79yAkUeQHeaa1kBwK7ym",
+    "model": "claude-haiku-4-5-20251001",
+    "role": "assistant",
+    "stop_details": null,
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "not_available",
+      "input_tokens": 3771,
+      "output_tokens": 199,
+      "server_tool_use": null,
+      "service_tier": "standard"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+[
+  {
+    "claim": "Meridian Components issued a voluntary precautionary recall of a single capacitor-assembly lot in Q1 2026 over potential elevated leakage current under thermal stress.",
+    "evidence": "'Meridian Components issued a limited quality advisory ... a potential reliability concern in a specific lot of its surface-mount capacitor assemblies.'",
+    "source": "industry_news",
+    "source_date": "2026-02-19",
+    "confidence": 0.8,
+    "metric_id": "field_quality_concern",
+    "needs_identifier": false,
+    "candidates": []
+  }
+]

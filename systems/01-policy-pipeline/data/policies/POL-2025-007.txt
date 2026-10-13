@@ -1,0 +1,35 @@
+Northgate Specialty Lines / Umbrella Division
+Renewal Declarations  -  Personal Umbrella
+
+  policy id ............ POL - 2025 - 007
+  policyholder ......... Rebecca Onyemaechi
+  residence ............ 902 Wildflower Run, Boulder CO 80302
+  product type ......... Umbrella  (Personal Excess Liability)
+  effective ............ 08/03/2025
+  expiration ........... 08/03/2026
+
+Premium for the renewal term ....   $ 1,094.00
+Retained limit / SIR .............   $    500
+Per-occurrence limit .............   $ 5,000,000
+Aggregate limit  .................   $ 5,000,000
+
+Schedule of underlying insurance (required to remain in force):
+   - Personal Auto, 500/500/250
+   - Homeowners GL, 500,000 per occurrence
+   - Recreational Vehicle Liability, 300,000
+   - Employers Liability (domestic staff), 500,000
+
+ENDORSEMENTS
+   1) UND-Motorist / Underinsured Motorist excess - $1,000,000
+   2) Defense outside the limits endorsement
+   3) Reputational Injury & Cyber-Bullying Liability sublimit
+      $250,000
+
+EXCLUSIONS
+   - Punitive damages where uninsurable by law
+   - Liability arising out of any owned aircraft
+   - Liability assumed under a contract or agreement other
+     than an "insured contract"
+   - Workers compensation obligations
+
+End of declarations page.

@@ -1,0 +1,62 @@
+==============================================================
+   MERIDIAN LOGISTICS GROUP, INC.
+   1450 Harborview Parkway, Suite 300
+   Columbus, OH  43215
+   EIN: 47-XXXXXXX
+==============================================================
+   Payroll processed by ADP Workforce Now (R)
+   Earnings Statement
+--------------------------------------------------------------
+ Employee:        Daniel R. Whitfield
+ Employee ID:     MLG-008421
+ Address:         2178 Brookline Ave, Apt 4B
+                  Columbus, OH 43202
+ Department:      Operations - Distribution
+ Job Title:       Senior Logistics Analyst
+ Pay Rate:        $5,673.08 / bi-weekly  (Salary, Exempt)
+ Annual Salary:   $147,500.00
+ Filing Status:   Single   Allowances: 1
+--------------------------------------------------------------
+ Pay Period:      04/27/2026  -  05/10/2026
+ Pay Date:        05/15/2026
+ Check No.:       0049217
+ Deposit:         Direct Deposit (xxxx-4188)
+==============================================================
+
+ EARNINGS              RATE      HOURS    CURRENT       YTD
+ --------------------------------------------------------------
+ Regular Salary       Salary       80.00  5,673.08   51,057.72
+ Holiday Pay          Salary        0.00      0.00    2,269.23
+ PTO - Vacation       Salary        0.00      0.00    1,418.27
+ --------------------------------------------------------------
+ GROSS PAY                              5,673.08   54,745.22
+
+ TAXES & WITHHOLDINGS                   CURRENT       YTD
+ --------------------------------------------------------------
+ Federal Income Tax                       854.41    8,244.36
+ Social Security (OASDI)                  351.73    3,394.20
+ Medicare                                  82.26      793.81
+ OH State Income Tax                      183.65    1,772.18
+ Columbus City Tax (2.5%)                 141.83    1,368.63
+ --------------------------------------------------------------
+ TOTAL TAXES                            1,613.88   15,573.18
+
+ PRE-TAX DEDUCTIONS                     CURRENT       YTD
+ --------------------------------------------------------------
+ 401(k) Contribution (6%)                 340.38    3,284.71
+ Medical - Anthem PPO                     142.50    1,567.50
+ Dental - Delta Dental                     18.40      202.40
+ --------------------------------------------------------------
+ TOTAL DEDUCTIONS                         501.28    5,054.61
+
+==============================================================
+ NET PAY (this period):                            $3,557.92
+ YTD NET PAY:                                     $34,117.43
+==============================================================
+
+ Notes:
+   - Next scheduled pay date: 05/29/2026
+   - Questions? Contact Payroll at payroll@meridianlogistics.example
+   - Retain this statement for your records.
+
+ *** End of Earnings Statement ***

@@ -1,0 +1,324 @@
+{
+  "request": {
+    "max_tokens": 1500,
+    "messages": [
+      {
+        "content": "UNIFORM RESIDENTIAL LOAN APPLICATION\nBorrower: Jordan Chen\nCo-Borrower: Priya Chen\nProperty Address: 4218 Magnolia Street, Sacramento, CA 95816\nProperty Type: Single Family\nOccupancy: Primary Residence\nYear Built: 1962\nGross Living Area: 1,840 sq ft\nLoan Amount: $485,000\nLoan Term: 360 months\nInterest Rate: 6.875%\nLoan Purpose: Purchase\n",
+        "role": "user"
+      }
+    ],
+    "model": "claude-haiku-4-5",
+    "system": "You are an extraction agent for a mortgage lender. The document is a loan_application document. Call `extract_loan_application` exactly once with the structured data the document contains, or `flag_for_review` if the document is unreadable or off-topic.\n\nNormalization rules \u2014 apply BEFORE writing values into structured fields:\n1. Square footage: emit an INTEGER (e.g., \"about 2,400 sq ft\" \u2192 2400; \"~3,100 SF\" \u2192 3100).\n2. Currency amounts: strip \"$\" and commas; emit a NUMBER (e.g., \"$485,000\" \u2192 485000.0; \"$1,234.56\" \u2192 1234.56).\n3. Percentage fields (interest rates, ratios): emit a DECIMAL (e.g., \"6.5%\" \u2192 0.065; \"6.875%\" \u2192 0.06875).\n\n<example name=\"clean\">\n<input>\nPAYSTUB. Employee: Jane Park. Pay frequency: monthly. Period 11/01-11/30/2024.\nBase monthly pay: $4,800.00. Monthly bonus: $400.00. Commission this month: $0.00.\nOther earnings: none. Stated monthly total: $5,200.00.\n</input>\n<reasoning>\nAll four income components are explicitly stated. Commission is explicitly\n$0.00 in the document, so we report 0.0 \u2014 not null \u2014 because the document\n*stated* it as zero. The stated_monthly_total of $5,200 equals the sum\n($4,800 + $400 + $0 + $0), so the validator will mark this consistent; we\nstill emit both fields verbatim so the validator can confirm.\n</reasoning>\n<output>\n{\"income\": {\"base_monthly\": 4800.00, \"bonus_monthly\": 400.00, \"commission_monthly\": 0.00, \"other_monthly\": null, \"stated_monthly_total\": 5200.00}}\n</output>\n</example>\n\n<example name=\"missing-bonus-returns-null\">\n<input>\nPAYSTUB. Employee: Carlos Mendez. Pay frequency: monthly. Period 03/01-03/31/2025.\nBase monthly pay: $3,500.00. The document does not mention bonus, commission, or overtime anywhere.\n</input>\n<reasoning>\nThe document does not mention bonus, commission, or overtime. Rule #1 says\nto return null when the document does not state a value \u2014 fabricating zero\nwould imply the employee earned zero bonus, not that the document is silent\nabout bonus. These are different facts. The downstream consumer treats null\nas \"we don't know\" and zero as \"we know it's zero\"; conflating them hides\nthe underlying uncertainty.\n</reasoning>\n<output>\n{\"income\": {\"base_monthly\": 3500.00, \"bonus_monthly\": null, \"commission_monthly\": null, \"overtime_monthly\": null, \"other_monthly\": null, \"stated_monthly_total\": null}}\n</output>\n</example>\n\n<example name=\"informal-measurement-normalized\">\n<input>\nAPPRAISAL. Subject property at 123 Oak Lane, Portland, OR 97214.\nGross living area: about 2,400 sq ft (above-grade finished).\nProperty type: single family. Occupancy: primary residence.\n</input>\n<reasoning>\n\"about 2,400 sq ft\" is an informal expression of a numeric measurement.\nNormalization rule #1 (square footage as integer) requires emitting the\ninteger 2400, not the source phrase and not a rounded variant. The hedge\nword \"about\" does not change the recorded value; if the appraiser were\nconfident in a different value they would have stated it. The schema enum\nincludes \"single_family\" exactly, so property_type uses the enum value and\nproperty_type_detail is null.\n</reasoning>\n<output>\n{\"property\": {\"gross_living_area_sqft\": 2400, \"property_type\": \"single_family\", \"property_type_detail\": null, \"occupancy_type\": \"primary_residence\"}}\n</output>\n</example>\n\n<example name=\"sum-mismatch-recorded-verbatim\">\n<input>\nPAYSTUB. Employee: Aiko Tanaka. Pay frequency: monthly.\nBase monthly pay: $4,000.00. Monthly bonus: $500.00. Commission this month: $0.00.\nOther earnings: $0.00. Stated monthly total: $5,000.00.\n</input>\n<reasoning>\nThe stated_monthly_total ($5,000.00) does not equal the sum of components\n($4,500.00). Do NOT silently correct the discrepancy \u2014 record both values\nverbatim. The mathematical-consistency validator downstream will flag this\nso a human can investigate the source document. Lying about either value\nwould hide the underlying error from the underwriting team. The \"right\"\nanswer here is to surface the conflict, not to resolve it.\n</reasoning>\n<output>\n{\"income\": {\"base_monthly\": 4000.00, \"bonus_monthly\": 500.00, \"commission_monthly\": 0.00, \"other_monthly\": 0.00, \"stated_monthly_total\": 5000.00}}\n</output>\n</example>\n",
+    "tool_choice": {
+      "type": "any"
+    },
+    "tools": [
+      {
+        "description": "Extract structured mortgage data from a loan_application document. Use null for any field not explicitly stated. When a categorical field's value is not in the listed enum, emit 'other' and write the actual value into the corresponding *_detail field.",
+        "input_schema": {
+          "properties": {
+            "borrower": {
+              "properties": {
+                "coborrower_name": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "date_of_birth": {
+                  "description": "ISO 8601 date (YYYY-MM-DD).",
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "email": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "full_name": {
+                  "type": "string"
+                },
+                "phone": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "ssn_last4": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "full_name"
+              ],
+              "type": "object"
+            },
+            "income": {
+              "properties": {
+                "base_monthly": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "bonus_monthly": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "bonus_ytd": {
+                  "description": "Year-to-date bonus. Tracked separately from `bonus_monthly` so the YTD column on a paystub can be captured even when the current period had no bonus.",
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "commission_monthly": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "other_monthly": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "overtime_monthly": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "stated_monthly_total": {
+                  "description": "Total monthly income as stated by the document, extracted verbatim. The validator cross-checks this against the sum of the per-component monthly fields above.",
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                }
+              },
+              "type": "object"
+            },
+            "loan": {
+              "properties": {
+                "amount": {
+                  "type": "number"
+                },
+                "interest_rate": {
+                  "description": "Decimal rate, e.g. 0.0625 for 6.25%.",
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "loan_program": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "loan_purpose": {
+                  "enum": [
+                    "purchase",
+                    "refinance_rate_term",
+                    "refinance_cash_out",
+                    "other",
+                    null
+                  ],
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "loan_purpose_detail": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "term_months": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "amount"
+              ],
+              "type": "object"
+            },
+            "property": {
+              "properties": {
+                "address": {
+                  "type": "string"
+                },
+                "appraised_value": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "gross_living_area_sqft": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                },
+                "hoa_dues_monthly": {
+                  "type": [
+                    "number",
+                    "null"
+                  ]
+                },
+                "occupancy_type": {
+                  "enum": [
+                    "primary_residence",
+                    "second_home",
+                    "investment",
+                    "other",
+                    null
+                  ],
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "occupancy_type_detail": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "property_type": {
+                  "enum": [
+                    "single_family",
+                    "condo",
+                    "townhouse",
+                    "multi_family_2_4_unit",
+                    "manufactured",
+                    "planned_unit_development",
+                    "other"
+                  ],
+                  "type": "string"
+                },
+                "property_type_detail": {
+                  "description": "Free-text description when property_type is 'other'. Null when property_type is a known value.",
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "year_built": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "address",
+                "property_type"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "borrower",
+            "property",
+            "loan"
+          ],
+          "type": "object"
+        },
+        "name": "extract_loan_application"
+      },
+      {
+        "description": "Call this when the document is too unclear, damaged, or off-topic to extract confidently. Provide a one-sentence reason.",
+        "input_schema": {
+          "properties": {
+            "reason": {
+              "description": "One sentence describing why extraction is not possible.",
+              "type": "string"
+            }
+          },
+          "required": [
+            "reason"
+          ],
+          "type": "object"
+        },
+        "name": "flag_for_review"
+      }
+    ]
+  },
+  "response": {
+    "container": null,
+    "content": [
+      {
+        "caller": {
+          "type": "direct"
+        },
+        "id": "toolu_014HD1tzQzVt3k8XTx9NXWpw",
+        "input": {
+          "borrower": {
+            "coborrower_name": "Priya Chen",
+            "date_of_birth": null,
+            "email": null,
+            "full_name": "Jordan Chen",
+            "phone": null,
+            "ssn_last4": null
+          },
+          "loan": {
+            "amount": 485000.0,
+            "interest_rate": 0.06875,
+            "loan_program": null,
+            "loan_purpose": "purchase",
+            "loan_purpose_detail": null,
+            "term_months": 360
+          },
+          "property": {
+            "address": "4218 Magnolia Street, Sacramento, CA 95816",
+            "appraised_value": null,
+            "gross_living_area_sqft": 1840,
+            "hoa_dues_monthly": null,
+            "occupancy_type": "primary_residence",
+            "occupancy_type_detail": null,
+            "property_type": "single_family",
+            "property_type_detail": null,
+            "year_built": 1962
+          }
+        },
+        "name": "extract_loan_application",
+        "type": "tool_use"
+      }
+    ],
+    "id": "msg_01Ppv7gYSXsrhyH6bNk6ctAy",
+    "model": "claude-haiku-4-5-20251001",
+    "role": "assistant",
+    "stop_details": null,
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "type": "message",
+    "usage": {
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "inference_geo": "not_available",
+      "input_tokens": 2892,
+      "output_tokens": 320,
+      "server_tool_use": null,
+      "service_tier": "standard"
+    }
+  }
+}

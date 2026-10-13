@@ -1,0 +1,89 @@
+================================================================
+                    ADP PAYROLL SERVICES
+                  Earnings Statement
+================================================================
+
+Employer:     Brightwater Logistics Solutions, LLC
+              4720 Continental Freight Way, Suite 220
+              Charlotte, NC 28208
+              EIN: 47-3918264
+
+Employee:     Marcus T. Hollingsworth
+Address:      188 Cedar Ridge Lane, Apt 4B
+              Charlotte, NC 28269
+Employee ID:  BWLS-04471
+Department:   Regional Sales - Mid-Atlantic
+Position:     Senior Account Executive
+Filing Status: Married Filing Jointly
+Exemptions:   2
+
+----------------------------------------------------------------
+Pay Period:   04/01/2026 - 04/30/2026
+Pay Date:     05/01/2026
+Check No:     0098314
+Period:       Monthly
+----------------------------------------------------------------
+
+EARNINGS (CURRENT PERIOD - MONTHLY)
+================================================================
+Description              Rate         Hours      Current      YTD
+----------------------------------------------------------------
+Base Salary              -            -        5,416.67   21,666.68
+Commission (Apr Q2)      -            -        2,140.00    7,820.00
+Bonus - Performance      -            -        1,250.00    3,500.00
+Overtime Premium         -            -          385.50    1,142.75
+Auto Allowance (Other)   -            -          450.00    1,800.00
+----------------------------------------------------------------
+TOTAL MONTHLY EARNINGS                         10,892.17   35,929.43
+
+
+PRE-TAX DEDUCTIONS
+================================================================
+Description                            Current        YTD
+----------------------------------------------------------------
+401(k) Traditional (6%)                  325.00     1,300.00
+Medical - BCBS PPO Family                412.18     1,648.72
+Dental - Delta PPO                        38.44       153.76
+Vision - VSP                              11.20        44.80
+HSA Contribution                         150.00       600.00
+----------------------------------------------------------------
+Total Pre-Tax Deductions                 936.82     3,748.04
+
+
+TAXES WITHHELD
+================================================================
+Description                            Current        YTD
+----------------------------------------------------------------
+Federal Income Tax                     1,184.27     4,041.55
+Social Security (OASDI 6.2%)             596.42     2,019.83
+Medicare (1.45%)                         139.46       472.45
+NC State Income Tax                      438.91     1,488.21
+----------------------------------------------------------------
+Total Taxes Withheld                   2,359.06     8,022.04
+
+
+POST-TAX DEDUCTIONS
+================================================================
+Description                            Current        YTD
+----------------------------------------------------------------
+Group Term Life Insurance                 18.50        74.00
+Voluntary AD&D                            12.75        51.00
+United Way Charitable                     25.00       100.00
+----------------------------------------------------------------
+Total Post-Tax Deductions                 56.25       225.00
+
+
+SUMMARY
+================================================================
+Gross Earnings (Monthly)              10,892.17    35,929.43
+Total Deductions                       3,352.13    11,995.08
+----------------------------------------------------------------
+NET PAY                                7,540.04    23,934.35
+
+
+Direct Deposit:  Wells Fargo Bank ****6219     7,540.04
+
+----------------------------------------------------------------
+ADP Processing ID: 26-NC-04471-0501
+This is a system-generated document. Retain for your records.
+================================================================
